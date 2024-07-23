@@ -1,23 +1,29 @@
 class Solution {
-    public boolean checkRecord(String s) {
-        //반복을 돌면서 글자 검사 
-        //1)P: 통과,L카운트0
-        //2)A: A카운트 증가,L카운트 0(2이상시 false리턴) 
-        //3)L: L카운트 증가 (L 3일 이상 false 리턴)
+    public String removeOuterParentheses(String s) {
+        //나뉘어 질 수 있는 덩어리들 중에 가장 바깥에 있는 괄호 한 묶음을 벗겨내어라
+        //(아우터 괄호 열림 상태)에서 여는 괄호 나오면 (이너 괄호 카운트++ ) 스트링에 삽입
+        //닫는 괄호가 나왔을 때 이너 괄호 카운트 --, 이너괄호 카운트가 == 0 이면 스트링에 넣음
 
-        int aCount = 0;
-        int lCount = 0;
+        String result = "";
+        boolean outer = false;
+        int inner = 0;
         char[] str = s.toCharArray();
+
         for ( char ch : str ) {
-            if ( ch == 'A' ) {
-                aCount++;
-                lCount = 0;
-                if( aCount >= 2 ) return false;
-            } else if ( ch =='L') {
-                lCount++;
-                if( lCount >= 3 ) return false;
-            } else lCount = 0;
+            if( ch == '(' ) {
+                if ( outer ) {
+                    inner++;
+                    result += ch;
+                    }
+                else outer = true;
+            } else {
+                if ( inner == 0 ) outer = false;
+                else {
+                    inner --;
+                    result += ch;
+                }
+            }
         }
-        return true;
+        return result;
     }
 }

@@ -1,24 +1,17 @@
 class Solution {
-    public List<Integer> selfDividingNumbers(int left, int right) {
-        //각 자릿수로 해당 수가 나누어 떨어지면 자기 분할 수이다.
-        //좌부터 우로 한칸씩 가면서 자릿수로 해당 숫자를 나누어 나누어 떨어지면 해당 수를 리스트에 넣는다.
+    public int mySqrt(int x) {
+        //제곱근 구해서 소수점 버림
+        //바이너리 서치로 중간부터 구해야함
+        if( x == 0 || x == 1 ) return x;
 
-        List<Integer> result = new ArrayList<Integer>();
-        for ( int i = left; i <= right; i++ ) {
-            int num = i;
-            boolean add = true;
-            while( num > 0 ){
-                int remain = num%10;
-                 if (remain == 0 || i % remain != 0) {
-                    add = false;
-                    break;
-                }
-                num /= 10;
-            }
-            if( add ) {
-                result.add(i);
-            }
+        int first = 1,last = x;
+
+        while ( first <= last ) {
+            int mid = first + (last - first)/2;
+            if( mid == x/mid ) return mid;
+            else if ( mid > x/mid ) last = mid -1;
+            else first = mid + 1;
         }
-        return result;
+        return last;
     }
 }

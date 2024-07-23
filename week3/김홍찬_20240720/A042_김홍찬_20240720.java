@@ -1,23 +1,23 @@
 class Solution {
-    public boolean halvesAreAlike(String s) {
-        s = s.toLowerCase();
-        int half = s.length()/2;
-        String first = s.substring(0,half);
-        String last = s.substring(half);
-        int fCount = 0, lCount = 0;
+    public boolean backspaceCompare(String s, String t) {
+        char[] sArray = s.toCharArray();
+        char[] tArray = t.toCharArray();
 
-        for( int i = 0; i < first.length(); i++ ) {
-            if( first.charAt(i) == 'a' || first.charAt(i) == 'e' || first.charAt(i) == 'i' || first.charAt(i) == 'o' || first.charAt(i) == 'u' ) {
-                fCount++;
-            }
+        ArrayList<Character> sList = new ArrayList<>();
+        ArrayList<Character> tList = new ArrayList<>();
+
+        for( char ch : sArray ) {
+            if( ch == '#' ) {
+                if( sList.size() > 0 ) sList.remove( sList.size() - 1 );
+            } else sList.add(ch);
         }
-        for( int i = 0; i < last.length(); i++ ) {
-            if( last.charAt(i) == 'a' || last.charAt(i) == 'e' || last.charAt(i) == 'i' || last.charAt(i) == 'o' || last.charAt(i) == 'u' ) {
-                lCount++;
-            }
+        for( char ch : tArray ) {
+            if( ch == '#' ) {
+                if ( tList.size() > 0 ) tList.remove( tList.size() - 1 );
+            } else tList.add(ch);
         }
 
-        if ( fCount == lCount ) return true;
+        if( sList.equals(tList) ) return true;
         else return false;
     }
 }
