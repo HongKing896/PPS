@@ -1,21 +1,25 @@
+
 import java.util.Scanner;
 
 class Main {
-  public static void main(String[] args) {
-    Main baekJoon = new Main();
-    baekJoon.no2455();
-  }
-  void no2455() {
-    Scanner s = new Scanner(System.in);
-    int max = 0,in,out,curr=0;
 
-    for( int i =0; i < 4; i++){
-      out = s.nextInt();
-      in = s.nextInt();
-      curr += (in - out);
-      if( curr > max ) max = curr;
+    public static void main(String[] args) {
+        Main baekJoon = new Main();
+        baekJoon.no2010();
     }
-    s.close();
-    System.out.println(max);
-  }
+
+    void no2010() {
+        Scanner s = new Scanner(System.in);
+        int sum = 0;
+        int num = s.nextInt();
+        for (int i = 0; i < num; i++) {
+            int count = s.nextInt();
+            if (i == num - 1) {
+                sum += count; 
+            }else {
+                sum += (count - 1);
+            }
+        }
+        System.out.println(sum);
+    }
 }
