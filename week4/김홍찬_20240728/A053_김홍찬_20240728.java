@@ -34,7 +34,7 @@ class Main {
             }
             if(str.contains("empty")){
                 if(stack.isEmpty())System.out.println(1);
-                else System.out.println(0);
+                else System.out.println();
             }
             if(str.contains("top")){
                 if(stack.isEmpty())System.out.println(-1);
