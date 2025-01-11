@@ -28,6 +28,6 @@ class Main{
             }
             stack.push(new int[]{i, height});
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 }
